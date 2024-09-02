@@ -1,0 +1,10 @@
+#banner {
+  width: 100%;
+  height: 200px;
+}
+
+#gallery img {
+  width: 200px;
+  height: 150px;
+  margin: 5px;
+}
