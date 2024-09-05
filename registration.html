@@ -1,0 +1,167 @@
+ <!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+    <style>
+        .error-message {
+            color: red;
+        }
+    </style> 
+
+<script>
+    function saveFormData() {
+
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
+    var email = document.getElementById("email").value;
+    var phoneNumber = document.getElementById("phoneNumber").value;
+
+ 
+    document.cookie = "firstName=" + firstName;
+    document.cookie = "lastName=" + lastName;
+    document.cookie = "email=" + email;
+    document.cookie = "phoneNumber" + phoneNumber;  
+    }
+
+
+</script>
+</head>
+
+<body>
+    <header>
+        <div class="top">
+            <a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
+        </div>
+        <nav>
+            <ul class="topnav">
+                <li><a href="index.html">Home</a>
+                </li>
+                <li><a href="invitation.html">Invitation</a>
+                </li>
+				<li><a href="volunteer.html">Volunteers</a>
+                </li>
+                <li><a href="gallery.html">Gallery</a>
+                </li>
+                <li><a href="registration.html" class="active">Registration</a>
+                </li>
+            </ul>
+
+        </nav>
+    </header>
+    <section id="pageForm">
+        <form action="confirm.html" method="GET" onsubmit="saveFormData()">
+            <label for="userName">Username*:</label>
+            <input type="text" id="userName" name="userName" placeholder="Enter your Username" required pattern="[a-zA-Z0-9]+" title="Username must only contain letters and numbers">
+            <span class="error-message" id="userNameError"></span>
+
+            <label for="password">Password*:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your Password" required minlength="8">
+            <span class="error-message" id="passwordError"></span>
+
+            <label for="passwordVerify">Verify your Password*:</label>
+            <input type="password" id="passwordVerify" name="passwordVerify" placeholder="Enter your Password again" required minlength="8">
+            <span class="error-message" id="passwordVerifyError"></span>
+g
+            <label for="firstName">First Name*:</label>
+            <input type="text" id="firstName" name="firstName" placeholder="Enter your First Name" required>
+            <span class="error-message" id="firstNameError"></span>
+
+            <label for="lastName">Last Name*:</label>
+            <input type="text" id="lastName" name="lastName" placeholder="Enter your Last Name" required>
+            <span class="error-message" id="lastNameError"></span>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your Email Address">
+            <span class="error-message" id="emailError"></span>
+
+            <label for="phoneNumber">Phone Number:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Enter your Phone Number" pattern="\(\d{3}\) \d{3}-\d{4}">
+            <span class="error-message" id="phoneNumberError"></span>
+
+            <label for="signUpNewsletter">Sign up for newsletter:</label>
+            <input type="radio" id="signUpNewsletterYes" name="signUpNewsletter" value="Yes" checked> Yes
+            <input type="radio" id="signUpNewsletterNo" name="signUpNewsletter" value="No"> No
+
+           
+        
+            <input type="submit" value="Submit">
+        </form>
+    </section>
+
+    <footer>This events site is for IT3515 tasks.
+    </footer>
+    <script>
+        function validateForm() {
+        
+            clearErrors();
+
+            let isValid = true;
+
+         
+            const userNameInput = document.getElementById("userName");
+            if (!/^[a-zA-Z0-9]+$/.test(userNameInput.value)) {
+                document.getElementById("userNameError").textContent = "Username must only contain letters and numbers";
+                isValid = false;
+            }
+
+           
+            const passwordInput = document.getElementById("password");
+            if (passwordInput.value.length < 8) {
+                document.getElementById("passwordError").textContent = "Password must be at least 8 characters long";
+                isValid = false;
+            }
+
+          
+            const passwordVerifyInput = document.getElementById("passwordVerify");
+            if (passwordVerifyInput.value !== passwordInput.value) {
+                document.getElementById("passwordVerifyError").textContent = "Passwords must match";
+                isValid = false;
+            }
+
+      
+            const firstNameInput = document.getElementById("firstName");
+            const lastNameInput = document.getElementById("lastName");
+            if (!/^[a-zA-Z]+$/.test(firstNameInput.value)) {
+                document.getElementById("firstNameError").textContent = "First Name must be a valid text string";
+                isValid = false;
+            }
+            if (!/^[a-zA-Z]+$/.test(lastNameInput.value)) {
+                document.getElementById("lastNameError").textContent = "Last Name must be a valid text string";
+                isValid = false;
+            }
+
+       
+            const emailInput = document.getElementById("email");
+            if (emailInput.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+                document.getElementById("emailError").textContent = "Email must be in the format xxx@xxx.xxx";
+                isValid = false;
+            }
+
+         
+            const phoneNumberInput = document.getElementById("phoneNumber");
+            if (phoneNumberInput.value && !/\(\d{3}\) \d{3}-\d{4}/.test(phoneNumberInput.value)) {
+                document.getElementById("phoneNumberError").textContent = "Phone Number must be in the format (xxx) xxx-xxxx";
+                isValid = false;
+            }
+
+            
+            return isValid;
+        }
+
+        function clearErrors() {
+            const errorElements = document.getElementsByClassName("error-message");
+            for (const errorElement of errorElements) {
+                errorElement.textContent = "";
+            }
+        }
+    </script>
+ 
+ </form>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmation Page</title>
+</head>
+<body>
+    <h1>Registration Data</h1>
+    <div id="formData"></div>
+
+    <script>
+        function getCookie(name) {
+            var cookieArr = document.cookie.split(";");
+            
+            for(var i = 0; i < cookieArr.length; i++) {
+                var cookiePair = cookieArr[i].split("=");
+                if(name == decodeURIComponent(cookiePair[0].trim())) {
+                    return decodeURIComponent(cookiePair[1]);
+                }
+            }
+            return null;
+        }
+
+        function displayFormData() {
+            var formDataDiv = document.getElementById("formData");
+            formDataDiv.innerHTML = "";
+
+     
+            var firstName = getCookie("firstName");
+            var lastName = getCookie("lastName");
+            var email = getCookie("email");
+            var phoneNumber = getCookie("phoneNumber");
+
+
+            if (firstName) formDataDiv.innerHTML += "<p>First Name: " + firstName + "</p>";
+            if (lastName) formDataDiv.innerHTML += "<p>Last Name: " + lastName + "</p>";
+            if (email) formDataDiv.innerHTML += "<p>Email: " + email + " </p>";
+            if (phoneNumber) formDataDiv.innerHTML += "<p>Phone Number: " + phoneNumber + "</p>";
+
+        
+        }
+
+
+        displayFormData();
+
+    </script>
+    <script>function alertUser(msg) {
+        alert(msg);
+        }
+        </script>
+         <body onload="alertUser('Submission succeeded, Thank you!')">
+            <div style="text-align:center;padding:10px;">
+
+</body>
+</html>
